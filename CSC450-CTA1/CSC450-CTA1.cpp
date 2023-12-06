@@ -36,33 +36,59 @@
 
 #include<iostream>
 #include<string>
+#include<cstring>
+#include<cctype>
 using namespace std;
 
 int main()
 {
 	string userFirstName;
+	string userLastName;
+	string userAddress;
+	string userCity;
+	char userZipCode[6]={};
+	bool valid;
+
+
 	cout<<"Enter the first name: "<<endl;
 	cin>>userFirstName;
-	string userLastName;
+
 	cout<<"Enter the last name: "<<endl;
 	cin>>userLastName;
-	string userAddress;
-	std::cin.ignore(10, '\n');
+
 	cout<<"Enter the street address: "<<endl;
+	std::cin.ignore(50, '\n');
 	getline(cin,userAddress);
-	string userCity;
+
 	cout<<"Enter the city: "<<endl;
 	getline(cin,userCity);
-	int userZipCode;
-	cout<<"Enter the Zip Code: "<<endl;
-	try
+
+	cout<<"Enter the 5-digit Zip Code: "<<endl;
+	do
 	{
+		valid = false;
 		cin>>userZipCode;
-	}
-	catch (...)
-	{
-		cout<<"You must enter a number for the zip code!"<<endl;
-	}
+		for (int i=0; i < 5; i++)
+		{
+			int isInt = isdigit(userZipCode[i]);
+			if (isInt)
+			{
+				valid = true;
+			}
+			else
+			{
+				cout<<"You must enter only numbers and it must be 5 digits, please try again: "<<endl;
+				valid = false;
+			}
+		}
+
+		if (valid == true && strlen(userZipCode) < 5)
+		{
+			valid = false;
+			cout<<"The Zip Code must be 5 digits long, please try again: "<<endl;
+		}
+	} while (!valid);
+
 
 	cout<<"First Name: "<<userFirstName<<"\nLast Name: "<<userLastName<<"\nStreet Address: "<<userAddress<<"\nCity: "<<userCity<<endl;
 	cout<<"ZipCode: "<<userZipCode<<endl;
@@ -71,6 +97,3 @@ int main()
 	return 0;
 
 }
-
-
-
