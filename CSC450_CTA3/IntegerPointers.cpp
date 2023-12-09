@@ -45,11 +45,11 @@
 
 using namespace std;
 
-main()
+int main()
 {
-	int *userIn1 = new int;
-	int *userIn2 = new int;
-	int *userIn3 = new int;
+	int * userIn1 = new int;
+	int * userIn2 = new int;
+	int * userIn3 = new int;
 
 	cout<<"Enter an integer number(1 of 3): "<<endl;
 	cin>>*userIn1;
@@ -59,10 +59,15 @@ main()
 	cin>>*userIn3;
 
 	cout<<"First number: "<<*userIn1<<endl;
+	cout<<"First number memory location: "<<userIn1<<endl;
 	cout<<"Second number: "<<*userIn2<<endl;
+	cout<<"Second number memory location: "<<userIn2<<endl;
 	cout<<"Third number: "<<*userIn3<<endl;
+	cout<<"Third number memory location: "<<userIn3<<endl;
 
-
+	delete userIn1;
+	delete userIn2;
+	delete userIn3;
 
 	return 0;
 }
